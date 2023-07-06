@@ -7,6 +7,9 @@ def second_choice():
         player.cut_grass()
     elif choice == 'buy scissors':
         player.buy_scissors()
+    else:
+        print('do what??')
+        second_choice()
 
 def third_choice():
     choice = input("Would like to cut grass? or buy an old timey push lawnmower for $25? Respond with 'cut grass' or 'buy lawnmower' ").lower()
@@ -14,6 +17,33 @@ def third_choice():
         player.cut_grass()
     elif choice == 'buy lawnmower':
         player.buy_lawnmower()
+    else:
+        print('do what??')
+        third_choice()
+
+def fourth_choice():
+    choice = input("Would like to cut grass? or buy a fancy battery powered mower for $250? Respond with 'cut grass' or 'buy fancy lawnmower' ").lower()
+    if choice == 'cut grass':
+        player.cut_grass()
+    elif choice == 'buy fancy lawnmower':
+        player.buy_fancy_lawnmower()
+    else:
+        print('do what??')
+        fourth_choice()
+
+def fifth_choice():
+    choice = input("Would like to cut grass? or buy a team of starving students for $500? Respond with 'cut grass' or 'buy team of students' ").lower()
+    if choice == 'cut grass':
+        player.cut_grass()
+    elif choice == 'buy team of students':
+        player.buy_student_team()
+    else:
+        print('do what??')
+        fifth_choice()
+
+def win_message():
+    print('You win the game yay!')
+
 
 class User():
     def __init__(self, name, money=0):
@@ -44,8 +74,14 @@ class User():
        elif self.money >= 25 and self.tool == 'rusty scissors':
            third_choice()
            first_choice()
-       else:
+       elif self.money >= 250 and self.tool == 'old timey push lawnmower':
+           fourth_choice()
            first_choice()
+       elif self.money >= 500 and self.tool == 'fancy battery powered lawnmower':
+           fifth_choice()
+           first_choice()
+       elif self.money >= 1000 and self.tool == 'team of starving students':
+           win_message()
 
     def buy_scissors(self):
         if self.money < 5:
@@ -64,6 +100,26 @@ class User():
         self.money -= 25
         self.tool = 'old timey push lawnmower'
         self.earn = 50
+        print(f'You now have ${self.money}, your tool is {self.tool}, and you can earn ${self.earn} per day')
+        first_choice()
+
+    def buy_fancy_lawnmower(self):
+        if self.money < 250:
+            print('You do not have enough money')
+            fourth_choice()
+        self.money -= 250
+        self.tool = 'fancy battery powered lawnmower'
+        self.earn = 100
+        print(f'You now have ${self.money}, your tool is {self.tool}, and you can earn ${self.earn} per day')
+        first_choice()
+
+    def buy_student_team(self):
+        if self.money < 500:
+            print('You do not have enough money')
+            fifth_choice()
+        self.money -= 500
+        self.tool = 'team of starving students'
+        self.earn = 250
         print(f'You now have ${self.money}, your tool is {self.tool}, and you can earn ${self.earn} per day')
         first_choice()
             
