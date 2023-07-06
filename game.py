@@ -3,7 +3,9 @@
 
 def second_choice():
     choice = input("Would like to cut grass? or buy scissors for $5? Respond with 'cut grass' or 'buy scissors' ").lower()
-    if choice == 'cut grass':
+    if choice == 'quit':
+        welcome()
+    elif choice == 'cut grass':
         player.cut_grass()
     elif choice == 'buy scissors':
         player.buy_scissors()
@@ -13,7 +15,9 @@ def second_choice():
 
 def third_choice():
     choice = input("Would like to cut grass? or buy an old timey push lawnmower for $25? Respond with 'cut grass' or 'buy lawnmower' ").lower()
-    if choice == 'cut grass':
+    if choice == 'quit':
+        welcome()
+    elif choice == 'cut grass':
         player.cut_grass()
     elif choice == 'buy lawnmower':
         player.buy_lawnmower()
@@ -23,7 +27,9 @@ def third_choice():
 
 def fourth_choice():
     choice = input("Would like to cut grass? or buy a fancy battery powered mower for $250? Respond with 'cut grass' or 'buy fancy lawnmower' ").lower()
-    if choice == 'cut grass':
+    if choice == 'quit':
+        welcome()
+    elif choice == 'cut grass':
         player.cut_grass()
     elif choice == 'buy fancy lawnmower':
         player.buy_fancy_lawnmower()
@@ -33,7 +39,9 @@ def fourth_choice():
 
 def fifth_choice():
     choice = input("Would like to cut grass? or buy a team of starving students for $500? Respond with 'cut grass' or 'buy team of students' ").lower()
-    if choice == 'cut grass':
+    if choice == 'quit':
+        welcome()
+    elif choice == 'cut grass':
         player.cut_grass()
     elif choice == 'buy team of students':
         player.buy_student_team()
@@ -42,7 +50,7 @@ def fifth_choice():
         fifth_choice()
 
 def win_message():
-    print('You win the game yay!')
+    print(f'{player.name} wins the game! Yay!')
     choice = input("Would you like to play again?").lower()
     if choice == 'yes':
         welcome()
@@ -62,7 +70,9 @@ class User():
        
     def second_choice():
         choice = input("Would like to cut grass? or buy scissors for $5? Respond with 'cut grass' or 'buy scissors' ")
-        if choice == 'cut grass':
+        if choice == 'quit':
+            welcome()
+        elif choice == 'cut grass':
             player.cut_grass()
         elif choice == 'buy scissors':
             player.buy_scissors()
@@ -133,22 +143,27 @@ class User():
 
 player = ""
 
+
+choice = None
+def first_choice():
+    choice = input('Would you like to cut grass? Yes or No?').lower()
+    if choice == 'quit':
+            welcome()
+    elif choice == 'yes':
+        player.cut_grass()
+    else:
+        print("That's too bad")
+        first_choice()
+
 def welcome():
     print('Welcome to the lawnmower game. You are starting a landscaping buisness and can only use your teeth to cut grass')
     name = input('What is your name?')
     global player
     player = User(name)
     print(f'Hello {player.name}!')
-
+    print("At any point in the game, type 'quit' to restart the game")
+    first_choice()
 welcome()
 
-choice = None
-def first_choice():
-    choice = input('Would you like to cut grass? Yes or No?').lower()
-    if choice == 'yes':
-        player.cut_grass()
-    else:
-        print("That's too bad")
-        first_choice()
 
-first_choice()
+
