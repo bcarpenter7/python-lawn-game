@@ -43,6 +43,11 @@ def fifth_choice():
 
 def win_message():
     print('You win the game yay!')
+    choice = input("Would you like to play again?").lower()
+    if choice == 'yes':
+        welcome()
+    else:
+        print('oh well')
 
 
 class User():
@@ -54,7 +59,6 @@ class User():
 
     def current_tool(self):
         self.tool = self.tool
-       
        
     def second_choice():
         choice = input("Would like to cut grass? or buy scissors for $5? Respond with 'cut grass' or 'buy scissors' ")
@@ -82,6 +86,8 @@ class User():
            first_choice()
        elif self.money >= 1000 and self.tool == 'team of starving students':
            win_message()
+       else:
+           first_choice()
 
     def buy_scissors(self):
         if self.money < 5:
@@ -122,14 +128,19 @@ class User():
         self.earn = 250
         print(f'You now have ${self.money}, your tool is {self.tool}, and you can earn ${self.earn} per day')
         first_choice()
-            
 
 
 
-print('Welcome to the lawnmower game. You are starting a landscaping buisness and can only use your teeth to cut grass')
-name = input('What is your name?')
-player = User(name)
-print(f'Hello {player.name}!')
+player = ""
+
+def welcome():
+    print('Welcome to the lawnmower game. You are starting a landscaping buisness and can only use your teeth to cut grass')
+    name = input('What is your name?')
+    global player
+    player = User(name)
+    print(f'Hello {player.name}!')
+
+welcome()
 
 choice = None
 def first_choice():
@@ -141,10 +152,3 @@ def first_choice():
         first_choice()
 
 first_choice()
-
-# def second_choice():
-#     choice = input("Would like to cut grass? or buy scissors for $5? Respond with 'cut grass' or 'buy scissors' ").lower()
-#     if choice == 'cut grass':
-#         player.cut_grass()
-#     elif choice == 'buy scissors':
-#         player.buy_scissors()
