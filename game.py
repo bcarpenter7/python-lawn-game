@@ -8,6 +8,12 @@ def second_choice():
     elif choice == 'buy scissors':
         player.buy_scissors()
 
+def third_choice():
+    choice = input("Would like to cut grass? or buy an old timey push lawnmower for $25? Respond with 'cut grass' or 'buy lawnmower' ").lower()
+    if choice == 'cut grass':
+        player.cut_grass()
+    elif choice == 'buy lawnmower':
+        player.buy_lawnmower()
 
 class User():
     def __init__(self, name, money=0):
@@ -35,6 +41,9 @@ class User():
        elif self.money >= 5 and self.tool == 'teeth':
             second_choice()
             first_choice()
+       elif self.money >= 25 and self.tool == 'rusty scissors':
+           third_choice()
+           first_choice()
        else:
            first_choice()
 
@@ -43,8 +52,18 @@ class User():
             print('You do not have enough money')
             second_choice()
         self.money -= 5
-        self.tool = 'scissors'
+        self.tool = 'rusty scissors'
         self.earn = 5
+        print(f'You now have ${self.money}, your tool is {self.tool}, and you can earn ${self.earn} per day')
+        first_choice()
+
+    def buy_lawnmower(self):
+        if self.money < 25:
+            print('You do not have enough money')
+            third_choice()
+        self.money -= 25
+        self.tool = 'old timey push lawnmower'
+        self.earn = 50
         print(f'You now have ${self.money}, your tool is {self.tool}, and you can earn ${self.earn} per day')
         first_choice()
             
